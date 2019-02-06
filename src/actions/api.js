@@ -167,6 +167,7 @@ export const onSearchUser = query => dispatch => {
 };
 
 export const onFetchInvoice = (token, version = null) => dispatch => {
+  console.log(token);
   dispatch(act.REQUEST_INVOICE(token));
   return api
     .invoice(token, version)

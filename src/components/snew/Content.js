@@ -5,6 +5,7 @@ import Link from "./Link";
 import ReactBody from "react-body";
 import PageLoadingIcon from "./PageLoadingIcon";
 import Message from "../Message";
+import thingLinkConnector from "../../connectors/thingLink";
 
 export const CustomContent = ({
   bodyClassName = "listing-page",
@@ -154,8 +155,10 @@ class Loader extends Component {
     const { csrf } = this.props;
     const { isFetched } = this.state;
     const { getLastBlockHeight, isTestnet } = this.props;
+    console.log(csrf);
     if (isFetched) return;
     else if (csrf) {
+      console.log("hereR");
       this.setState({ isFetched: true });
       this.props.onFetchData && this.props.onFetchData();
       this.props.onFetchStatus && this.props.onFetchStatus();
@@ -168,4 +171,4 @@ class Loader extends Component {
   }
 }
 
-export default Loader;
+export default thingLinkConnector(Loader);
