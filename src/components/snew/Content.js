@@ -155,10 +155,8 @@ class Loader extends Component {
     const { csrf } = this.props;
     const { isFetched } = this.state;
     const { getLastBlockHeight, isTestnet } = this.props;
-    console.log(csrf);
     if (isFetched) return;
     else if (csrf) {
-      console.log("hereR");
       this.setState({ isFetched: true });
       this.props.onFetchData && this.props.onFetchData();
       this.props.onFetchStatus && this.props.onFetchStatus();
