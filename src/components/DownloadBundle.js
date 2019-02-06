@@ -1,35 +1,35 @@
 import React, { Component } from "react";
-import proposalDownloadConnector from "../connectors/proposalDownload";
+import invoiceDownloadConnector from "../connectors/invoiceDownload";
 import fileDownload from "js-file-download";
 import { commentsToT1 } from "../lib/snew";
 
 class DownloadBundle extends Component {
   constructor(props) {
     super(props);
-    this.handleDownloadProposal = this.handleDownloadProposal.bind(this);
+    this.handleDownloadInvoice = this.handleDownloadInvoice.bind(this);
     this.handleDownloadComment = this.handleDownloadComment.bind(this);
   }
 
-  handleDownloadProposal() {
-    const { proposal, serverPubkey } = this.props;
-    const bundle = proposal;
+  handleDownloadInvoice() {
+    const { invoice, serverPubkey } = this.props;
+    const bundle = invoice;
     bundle.serverPubkey = serverPubkey;
     const data = JSON.stringify(bundle, null, 2);
-    fileDownload(data, `${proposal.censorshiprecord.token}.json`);
+    fileDownload(data, `${invoice.censorshiprecord.token}.json`);
   }
 
   handleDownloadComment() {
-    const { proposalComments, proposal } = this.props;
-    const data = JSON.stringify(commentsToT1(proposalComments), null, 2);
-    fileDownload(data, `${proposal.censorshiprecord.token}-comments.json`);
+    const { invoiceComments, invoice } = this.props;
+    const data = JSON.stringify(commentsToT1(invoiceComments), null, 2);
+    fileDownload(data, `${invoice.censorshiprecord.token}-comments.json`);
   }
 
   render() {
     const t = this.props.type;
 
     return t === "proposal" ? (
-      <a style={{ cursor: "pointer" }} onClick={this.handleDownloadProposal}>
-        {this.props.message || "Download Proposal Bundle"}
+      <a style={{ cursor: "pointer" }} onClick={this.handleDownloadInvoice}>
+        {this.props.message || "Download Invoice Bundle"}
       </a>
     ) : t === "comments" ? (
       <a style={{ cursor: "pointer" }} onClick={this.handleDownloadComment}>
@@ -39,4 +39,4 @@ class DownloadBundle extends Component {
   }
 }
 
-export default proposalDownloadConnector(DownloadBundle);
+export default invoiceDownloadConnector(DownloadBundle);
