@@ -166,6 +166,26 @@ export const onSearchUser = query => dispatch => {
     });
 };
 
+export const onReviewInvoice = (month, year = null) => dispatch => {
+  dispatch(act.REQUEST_REVIEW_INVOICE(month, year));
+  console.log("here");
+  return api
+    .reviewInvoices(month, year)
+    .then(response => {
+      response && response.invoice && Object.keys(response.invoice).length > 0
+        ? dispatch(act.RECEIVE_REVIEW_INVOICE(response))
+        : dispatch(
+            act.RECEIVE_REVIEW_INVOICE(
+              null,
+              new Error("The requested invoice does not exist.")
+            )
+          );
+    })
+    .catch(error => {
+      dispatch(act.RECEIVE_INVOICE(null, error));
+    });
+};
+
 export const onFetchInvoice = (token, version = null) => dispatch => {
   dispatch(act.REQUEST_INVOICE(token));
   return api

@@ -54,17 +54,17 @@ export const isMarkdown = compose(
   eq("index.md"),
   get("name")
 );
-export const getProposalFiles = compose(
-  get("files"),
+export const getInvoiceFiles = compose(
+  get("file"),
   invoice
 );
 export const getMarkdownFile = compose(
   find(isMarkdown),
-  getProposalFiles
+  getInvoiceFiles
 );
 export const getNotMarkdownFile = compose(
   filter(not(isMarkdown)),
-  getProposalFiles
+  getInvoiceFiles
 );
 
 export const getEditInvoiceValues = state => {

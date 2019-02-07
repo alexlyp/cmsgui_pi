@@ -144,6 +144,7 @@ class InvoiceDetail extends React.Component {
     } = this.props;
     const comments = this.state.sortedComments;
     const tempTree = tempThreadTree[commentid];
+    console.log("markdown:", markdownFile);
     return (
       <div className="content" role="main">
         <div className="page proposal-page">
