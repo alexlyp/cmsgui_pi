@@ -17,7 +17,8 @@ const newInvoiceConnector = connect(
     description: sel.newProposalDescription,
     error: sel.newInvoiceError,
     submitError: sel.newInvoiceError,
-    token: sel.newInvoiceToken
+    token: sel.newInvoiceToken,
+    policy: sel.policy
   }),
   {
     onFetchData: act.onGetPolicy,

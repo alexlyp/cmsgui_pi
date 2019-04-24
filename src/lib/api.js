@@ -67,7 +67,8 @@ export const makeInvoice = (
   contractorcontact,
   contractorrate,
   paymentaddress,
-  lineItems
+  lineItems,
+  files
 ) => {
   const { name, mime, payload } = convertJsonToFile({
     version: 1,
@@ -90,6 +91,7 @@ export const makeInvoice = (
     contractorrate,
     paymentaddress,
     files: [
+      ...files,
       {
         name,
         mime,
