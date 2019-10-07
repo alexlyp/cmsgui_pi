@@ -290,9 +290,39 @@ export const proposalPaywallDetails = () =>
 export const userProposalCredits = () =>
   GET("/v1/user/proposals/credits").then(getResponse);
 
+export const editCMSUser = (
+  csrf,
+  githubname,
+  matrixname,
+  contractorname,
+  contractorlocation,
+  contractorcontact
+) =>
+  POST("/user/edit", csrf, {
+    githubname,
+    matrixname,
+    contractorname,
+    contractorlocation,
+    contractorcontact
+  }).then(getResponse);
+
 export const editUser = (csrf, { emailnotifications }) =>
   POST("/user/edit", csrf, {
     emailnotifications
+  }).then(getResponse);
+
+export const manageCMSUser = (
+  csrf,
+  userid,
+  domain,
+  contractortype,
+  supervisoruserid
+) =>
+  POST("/user/manage", csrf, {
+    userid,
+    domain,
+    contractortype,
+    supervisoruserid
   }).then(getResponse);
 
 export const manageUser = (csrf, userid, action, reason) =>

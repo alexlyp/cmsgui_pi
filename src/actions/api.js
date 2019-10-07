@@ -526,6 +526,38 @@ export const onFetchLikedComments = token => dispatch => {
     });
 };
 
+export const onEditCMSUser = (
+  githubname,
+  matrixname,
+  contractorname,
+  contractorlocation,
+  contractorcontact
+) =>
+  withCsrf((dispatch, getState, csrf) => {
+    dispatch(
+      act.REQUEST_EDIT_CMS_USER(
+        githubname,
+        matrixname,
+        contractorname,
+        contractorlocation,
+        contractorcontact
+      )
+    );
+    return api
+      .editUser(
+        csrf,
+        githubname,
+        matrixname,
+        contractorname,
+        contractorlocation,
+        contractorcontact
+      )
+      .then(response => dispatch(act.RECEIVE_EDIT_CMS_USER(response)))
+      .catch(error => {
+        dispatch(act.RECEIVE_EDIT_CMS_USER(null, error));
+      });
+  });
+
 export const onEditUser = preferences =>
   withCsrf((dispatch, getState, csrf) => {
     dispatch(act.REQUEST_EDIT_USER(preferences));
@@ -534,6 +566,29 @@ export const onEditUser = preferences =>
       .then(response => dispatch(act.RECEIVE_EDIT_USER(response)))
       .catch(error => {
         dispatch(act.RECEIVE_EDIT_USER(null, error));
+      });
+  });
+
+export const onManageCMSUser = (
+  userId,
+  domain,
+  contractortype,
+  supervisoruserid
+) =>
+  withCsrf((dispatch, getState, csrf) => {
+    dispatch(
+      act.REQUEST_MANAGE_CMS_USER({
+        userId,
+        domain,
+        contractortype,
+        supervisoruserid
+      })
+    );
+    return api
+      .manageCMSUser(csrf, userId, domain, contractortype, supervisoruserid)
+      .then(response => dispatch(act.RECEIVE_MANAGE_CMS_USER(response)))
+      .catch(error => {
+        dispatch(act.RECEIVE_MANAGE_CMS_USER(null, error));
       });
   });
 

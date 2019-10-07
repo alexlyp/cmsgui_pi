@@ -163,8 +163,14 @@ const api = (state = DEFAULT_STATE, action) =>
     [act.RECEIVE_LIKED_COMMENTS]: () => receive("commentslikes", state, action),
     [act.REQUEST_EDIT_USER]: () => request("editUser", state, action),
     [act.RECEIVE_EDIT_USER]: () => receive("editUser", state, action),
-    [act.RECEIVE_EDIT_USER]: () => receive("editUser", state, action),
     [act.RESET_EDIT_USER]: () => reset("editUser", state, action),
+    [act.REQUEST_EDIT_CMS_USER]: () => request("editCMSUser", state, action),
+    [act.RECEIVE_EDIT_CMS_USER]: () => receive("editCMSUser", state, action),
+    [act.RESET_EDIT_CMS_USER]: () => reset("editCMSUser", state, action),
+    [act.REQUEST_MANAGE_CMS_USER]: () =>
+      request("manageCMSUser", state, action),
+    [act.RECEIVE_MANAGE_CMS_USER]: () =>
+      receive("manageCMSUser", state, action),
     [act.REQUEST_MANAGE_USER]: () => request("manageUser", state, action),
     [act.RECEIVE_MANAGE_USER]: () => onReceiveManageUser(state, action),
     [act.REQUEST_NEW_PROPOSAL]: () => request("newProposal", state, action),
